@@ -1,0 +1,31 @@
+﻿@model BiblioteccAccenturE.Models.Autor
+@{
+    ViewBag.Title = "EditarAutor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <header class="jumbotron text-center">
+        Editar Autor
+    </header>
+
+    <main class="container">
+        <form method="post">
+            <label for="txtTitulo">Autor </label>
+            <input type="text" id="txtAutor"
+                   name="NombreYApellido" value="@this.Model.NombreYApellido"
+                   placeholder="Ingrese Nombre y Apellido.." />
+
+        </form>
+    </main>
+</body>
+</html>

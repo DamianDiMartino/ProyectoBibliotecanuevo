@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    padding-left: 15px;
+    padding-right: 50px;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    display: flex;
+    background-color: grey;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    transition: all 0.5s ease;
+    
+}
+
+.home{
+    margin-right: 50px;
+}
+
+
+
+.header-abierto{
+   left:200px;
+  width: 81%;
+   
+}
+
+.contenedor{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.buscador{
+    justify-content: space-between;
+    display: flex;
+    width: 200px;
+    
+}
+
+#busca{
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+#bus{
+    height: 24px;
+    border-radius: 5px;
+}
+
+button{
+    border-radius: 5px;
+    height: 30px;
+    left: 10pz;
+    }
+    button:hover{
+        background: rgba(190, 190, 190, 0.637);
+    }
+
+main{
+    display: flex;
+    padding-top: 120px;
+}
+
+body{
+
+    background-image: url(librosnaranja2.jpg);
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+
+div{
+    width: 95%;
+    margin: 0 auto;
+}
+
+.div-abierto{
+    width: 80%;
+    margin-left: 200px;
+
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    background:linear-gradient(grey, rgb(66, 85, 79),#43434e);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease;
+    height: 100%;
+}
+
+.link{
+    display: block;
+    padding: 0.5rem;
+    color: rgb(69, 201, 216);
+    text-decoration: none;
+    transition: all 0.4s linear;
+    border-radius: 10px;
+    border-bottom: 1px solid rgb(91, 139, 125) ;
+}
+
+.nav1{
+    margin-top: 25px;
+    align-self: center;
+    justify-content: center;
+    display: flex;
+    
+}
+
+
+
+.link:hover{
+    background: rgb(83, 104, 98);
+}
+.linkhome{
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-style: inherit;
+   text-decoration: none;
+   color: rgb(69, 201, 216);
+}
+
+.home{
+    text-decoration: none;
+    color: rgb(69, 201, 216);
+}
+
+footer {
+    padding: 3rem;
+    background: rgb(255, 206, 132);
+    
+}
+
+.abierto{
+    left: 0;
+}
+

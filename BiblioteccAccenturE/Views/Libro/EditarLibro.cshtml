@@ -1,0 +1,200 @@
+﻿@using BiblioteccAccenturE.Models
+@model Libro
+@{
+    ViewBag.Title = "EditarLibro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    //Opciones para hacer llegar la lista de autores
+    //1.Crear un clase del modelo que envuelva al Libro y tenga todos los datos
+    //2.Crear un DataContext en este archivo con Razor
+    //3.Pasarle la lista de autores en el BiewBag
+    //4.Hacer un control especializado que sea un selector de autores
+}
+
+@{
+    BiblioteccAccenturEEntities dbEditar = new BiblioteccAccenturEEntities();
+    List<Autor> autores = dbEditar.Autor.OrderBy(aut => aut.NombreYApellido).ToList();
+    List<Genero> generos = dbEditar.Genero.OrderBy(gen => gen.NombreGenero).ToList();
+    List<Libro> libros = dbEditar.Libro.OrderBy(lib => lib.Titulo).ToList();
+    List<Editorial> editoriales = dbEditar.Editorial.OrderBy(edit => edit.NombreEditorial).ToList();
+}
+<!DOCTYPE html>
+
+
+<script>
+    function nuevoAutor() {
+        var lista = document.getElementById("listaAutores");
+        var select = lista.firstElementChild;
+        var copiaSelect = select.cloneNode(true);
+        copiaSelect.selectedIndex = 0;
+        lista.appendChild(copiaSelect);
+    }
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(lib=>lib.Id_Libro)
+    @Html.LabelFor(lib => lib.Titulo)
+    @Html.EditorFor(lib => lib.Titulo,
+                                            new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "form-control",
+                                                placeholder = "Ingrese el Titulo del Libro"
+                                            }
+                                        });
+
+
+
+    <div>Genero:</div>
+    <div id="listaEditoriales">
+        @if (this.Model != null)
+        {
+            foreach (Libro libroActual in libros)
+            {
+                <select class="form-control" name="edit">
+                    <option>Seleccione un autor...</option>
+                    @foreach (Editorial editorialLibro in editoriales)
+                    {
+                        <option @(editorialLibro.Id_Editorial.Equals(libroActual.Id_Editorial) ? "selected" : "")
+                                value="@editorialLibro.Id_Editorial">
+                            @editorialLibro.NombreEditorial
+                        </option>
+                    }
+                </select>
+            }
+
+        }
+        else
+        {
+            <select class="form-control" name="edit">
+                <option selected>Seleccione un autor...</option>
+                @foreach (Editorial edit in editoriales)
+                {
+                    <option value="@edit.Id_Editorial">@edit.NombreEditorial</option>
+                }
+            </select>
+        }
+    </div>
+
+    <div>Generos:</div>
+    <div id="listaGeneros">
+        @if (this.Model != null)
+        {
+            foreach (Libro libroActual in libros)
+            {
+                <select class="form-control" name="gen">
+                    <option>Seleccione un autor...</option>
+                    @foreach (Genero generoLibro in generos)
+                    {
+                        <option @(generoLibro.Id_Genero.Equals(libroActual.Id_Genero) ? "selected" : "")
+                                value="@generoLibro.Id_Genero">
+                            @generoLibro.NombreGenero
+                        </option>
+                    }
+                </select>
+            }
+
+        }
+        else
+        {
+            <select class="form-control" name="gen">
+                <option selected>Seleccione un autor...</option>
+                @foreach (Genero gen in generos)
+                {
+                    <option value="@gen.Id_Genero">@gen.NombreGenero</option>
+                }
+            </select>
+        }
+    </div>
+
+    <div>Autores:</div>
+    <div id="listaAutores">
+        @if (this.Model != null)
+        {
+            foreach (Autor autorLibro in this.Model.Autor)
+            {
+                <select class="form-control" name="autores">
+                    <option>Seleccione un autor...</option>
+                    @foreach (Autor autorActual in autores)
+                    {
+                        <option @(autorActual.Id_Autor.Equals(autorLibro.Id_Autor) ? "selected" : "")
+                                value="@autorActual.Id_Autor">
+                            @autorActual.NombreYApellido
+                        </option>
+                    }
+                </select>
+            }
+        }
+        else
+        {
+            <select class="form-control" name="autores">
+                <option selected>Seleccione un autor...</option>
+                @foreach (Autor autor in autores)
+                {
+                    <option value="@autor.Id_Autor">@autor.NombreYApellido</option>
+                }
+            </select>
+        }
+
+        <div class="text-right">
+            <a onclick="nuevoAutor()">otro autor...</a>
+        </div>
+
+    </div>
+
+    <button class="btn btn-primary form-control" style="margin-top:1em">
+        Enviar
+    </button>
+
+}
+
+
+
+
+
+
+<script>
+    function postbackForm() {
+        var request = new XMLHttpRequest();
+        request.open("POST", window.location.pathname)
+        request.onreadystatechange = function (resp) {
+            if ((resp.currentTarget.status == 200)
+                && (resp.currentTarget.readyState == 4)) {
+                var btn = document.getElementById("mostrarModal");
+                var msg = document.getElementById("contenidoInformacion");
+                msg.innerHTML = resp.currentTarget.responseText;
+                btn.click();
+            }
+        }
+        var formulario = document.getElementsByTagName("form")[0];
+        request.send(new FormData(formulario));
+    }
+</script>
+
+<button type="button" class="btn btn-primary form-control"
+        style="margin-top:1em" onclick="postbackForm()">
+    Enviar con Ajax
+</button>
+
+
+
+<button type="button" data-toggle="modal" data-target="#myModal"
+        style="display:none" id="mostrarModal">
+</button>
+
+<div id="myModal" class="modal fade container">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center alert-info"><h3>Información</h3></div>
+            <div class="modal-body text-center" id="contenidoInformacion"></div>
+            <div class="modal-footer text-right">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

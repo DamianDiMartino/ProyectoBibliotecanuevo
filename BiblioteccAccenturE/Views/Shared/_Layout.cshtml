@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/estilos2.css" rel="stylesheet" />
+    <link href="~/Content/MisEstilosCss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <title>BiblioteccAccenturE</title>
+</head>
+<body>
+    <nav>
+        <div class="nav1">
+            <a href="IndexB.html" class="linkhome" data-archivo="perfil">Home</a>
+
+        </div>
+        <div class="nav2">
+            <a href="Titulos.html" class="link" data-archivo="Titulos">Titulos</a>
+            <a href="Generos.html" class="link" data-archivo="Generos">Generos</a>
+            <a href="Editoriales.html" class="link" data-archivo="Editoriales">Editoriales</a>
+            <a href="Autores.html" class="link" data-archivo="Autores">Autores</a>
+        </div>
+        <div></div>
+    </nav>
+    <header>
+
+        <button class="material-icons" id="listado">menu</button>
+        <div class="contenedor">
+            <div class="buscador">
+                <form>
+                    <input type="text" placeholder="Ingrese Palabras Clave.." name="buscar" id="bus" />
+                </form>
+                <button class="material-icons" id="busca">search</button>
+            </div>
+            <a href="IndexB.html" class="home"><h2>BiblioteccAccenturE</h2></a>
+        </div>
+    </header>
+    <main>
+        <div>
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Copyright - 2019</p>
+    </footer>
+
+    <script src="~/Scripts/Script.js"></script>
+</body>
+</html>

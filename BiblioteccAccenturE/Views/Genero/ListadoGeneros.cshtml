@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BiblioteccAccenturE.Models.Genero>
+@{
+    ViewBag.Title = "ListadoGeneros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Listado Generos</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <h1 class="text-center">LISTADO DE GENEROS</h1>
+    <main class="container">
+
+        <div class="text-right">
+
+            <a href="/Genero/AgregarGenero/" class="glyphicon glyphicon-plus"
+               style="font-size:1.5em"></a>
+
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>GENERO</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var gen in this.Model)
+                {
+                    <tr>
+                        <td>@gen.NombreGenero</td>
+                        <td class="text-right">
+                            @Html.ActionLink(" ", "EditarGenero", new { Id = gen.Id_Genero },
+                            new
+                            {
+                                @class = "glyphicon glyphicon-pencil",
+                                style = "font-size:1.5em"
+                            })
+                            &nbsp &nbsp &nbsp
+                            @Html.ActionLink(" ", "EliminarGenero", new { Id = gen.Id_Genero },
+                            new
+                            {
+                                @class = "glyphicon glyphicon-trash",
+                                style = "font-size:1.5em"
+                            })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
+

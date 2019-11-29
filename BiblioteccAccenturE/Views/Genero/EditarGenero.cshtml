@@ -1,0 +1,30 @@
+﻿@model BiblioteccAccenturE.Models.Genero
+@{
+    ViewBag.Title = "EditarGenero";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <h1 class="text-center">@this.ViewBag.TituloPagina</h1>
+    <main class="container">
+        <form method="post">
+            <label for="txtTitulo">Genero </label>
+            <input type="text" id="txtGenero"
+                   name="NombreGenero" value="@this.Model.NombreGenero"
+                   placeholder="Ingrese El Genero" />
+
+        </form>
+    </main>
+</body>
+</html>
+

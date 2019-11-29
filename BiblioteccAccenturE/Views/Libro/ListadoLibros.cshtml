@@ -1,0 +1,99 @@
+﻿@using BiblioteccAccenturE.Models
+@model IEnumerable<Libro>
+@{
+    ViewBag.Title = "ListadoLibros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    BiblioteccAccenturEEntities dbListar = new BiblioteccAccenturEEntities();
+}
+<div class="text-right">
+    @Html.ActionLink("Agregar", "Agregar")
+</div>
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Genero</th>
+                <th>Editorial</th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input name="FiltroTitulo" type="text" class="form-control" />
+                </td>
+                <td>
+                    <select class="form-control" name="FiltroAutor">
+                        <option>Seleccione un Autor...</option>
+                        @foreach (Autor autor in dbListar.Autor.ToList())
+                        {
+                            <option value="@autor.Id_Autor">@autor.NombreYApellido</option>
+                        }
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control" name="FiltroGenero">
+                        <option>Seleccione Genero...</option>
+                        @foreach (Genero generos in dbListar.Genero.ToList())
+                        {
+                            <option value="@generos.Id_Genero">@generos.NombreGenero</option>
+                        }
+                    </select>
+                </td>
+
+                <td>
+                    <select class="form-control" name="FiltroEditorial">
+                        <option>Seleccione Editorial...</option>
+                        @foreach (Editorial editoriales in dbListar.Editorial.ToList())
+                        {
+                            <option value="@editoriales.Id_Editorial">@editoriales.NombreEditorial</option>
+                        }
+                    </select>
+                </td>
+                <td class="text-right">
+                    <button class="glyphicon glyphicon-search btn btn-primary"></button>
+                </td>
+            </tr>
+            @foreach (Libro lib in this.Model)
+            {
+                <tr>
+                    <td>@lib.Titulo</td>
+                    <td>
+                        @foreach (Autor autor in lib.Autor)
+                        {
+                            <div>@autor.NombreYApellido</div>
+                        }
+                    </td>
+                    <td class="text-right">
+                        @Html.ActionLink("Editar", "Editar", new { Id = lib.Id_Libro })
+                        @Html.ActionLink("Eliminar", "Eliminar", new { Id = lib.Id_Libro })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- mirar filtro filter de javascript-->
