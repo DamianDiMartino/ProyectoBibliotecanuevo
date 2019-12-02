@@ -74,3 +74,8 @@ function ajax(url){
     })
     xhr.send()
 }
+
+item = document.querySelectorAll("#item").values;
+
+
+

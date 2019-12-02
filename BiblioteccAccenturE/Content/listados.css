@@ -1,0 +1,71 @@
+﻿body{
+}
+
+td {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:15px;
+    font-weight:bold;
+    vertical-align:middle;  
+}
+
+th {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+
+
+}
+
+
+    tr:hover {
+        background-color:rgba(210,180,122,0.5);
+    }
+
+#encabezado:hover {
+    font-size:large;
+    background-color: transparent;
+}
+
+
+#edicion {
+
+    display: flex;
+}
+
+.tipeadores {
+    width: 400px;
+    font-size:20px;
+    text-align:center;
+}
+
+.selectores {
+ 
+    margin-right: 25px;
+    width: 700px;
+}
+
+#btnadd{
+    width:150px;
+    margin-left:25px;
+}
+
+.titulos {
+    font-size:large;
+    font-weight:bold;
+    text-align:center;
+}
+
+#divisor{
+    width:500px;
+}
+
+#enviar {
+    position:center;
+    width: 500px;
+}
+
+.btnposition{
+    display:flex;
+    justify-content:space-between;
+}
+

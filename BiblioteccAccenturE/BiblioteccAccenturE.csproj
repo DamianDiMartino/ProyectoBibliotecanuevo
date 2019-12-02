@@ -168,6 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\estilos2.css" />
+    <Content Include="Content\imagenes.css" />
+    <Content Include="Content\listados.css" />
     <Content Include="Data\BaseDeDatos.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -202,6 +204,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -230,6 +233,14 @@
     <Content Include="Views\Genero\ListadoGeneros.cshtml" />
     <Content Include="Views\Libro\ListadoLibros.cshtml" />
     <Content Include="Views\Libro\EditarLibro.cshtml" />
+    <Content Include="Views\Libro\EliminarLibro.cshtml" />
+    <Content Include="Views\Editorial\ErrorEliminarEditorial.cshtml" />
+    <Content Include="Views\Genero\ErrorEliminarGenero.cshtml" />
+    <Content Include="Views\Autor\ErrorEliminarAutor.cshtml" />
+    <Content Include="Views\Libro\CambiosGuardadosLibro.cshtml" />
+    <Content Include="Views\Editorial\CambiosGuardadosEditorial.cshtml" />
+    <Content Include="Views\Autor\CambiosGuardadosAutor.cshtml" />
+    <Content Include="Views\Genero\CambiosGuardadosGenero.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

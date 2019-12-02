@@ -4,38 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h1 class="text-center">LISTADO DE AUTORES</h1>
+<div>
+    
+    <div id="separador">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Listado Autores</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-</head>
-<body>
-    <h1 class="text-center">LISTADO DE AUTORES</h1>
-    <main class="container">
-        <div class="text-right">
+    </div>
+    <div>
 
-            <a href="/Autor/AgregarAutor/" class="glyphicon glyphicon-plus"
-               style="font-size:1.5em"></a>
-
-        </div>
-        <table class="table table-hover table-striped">
+        <table class="table">
             <thead>
-                <tr>
-                    <th>AUTOR</th>
+                <tr id="encabezado">
+                    <th style="font-size:xx-large">AUTOR</th>
 
-                    <th></th>
+                    <th><div class="text-right">
+    @Html.ActionLink(" ", "AgregarAutor", null, new
+                            {
+                                @class = "glyphicon glyphicon-plus",
+                                style = "font-size:1.5em"
+                            })
+</div></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var aut in this.Model)
                 {
                     <tr>
-                        <td>@aut.NombreYApellido</td>
+                        <td>@Html.ActionLink(aut.NombreYApellido, "LibrosPorAutor", "Libro", new { Id = aut.Id_Autor}, null)</td>
                         <td class="text-right">
                             @Html.ActionLink(" ", "EditarAutor", new { Id = aut.Id_Autor },
                             new
@@ -55,6 +50,8 @@
                 }
             </tbody>
         </table>
-    </main>
-</body>
-</html>
+    </div>
+    <div id="separador">
+
+    </div>
+</div>

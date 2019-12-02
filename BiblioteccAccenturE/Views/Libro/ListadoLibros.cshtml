@@ -8,25 +8,32 @@
 @{
     BiblioteccAccenturEEntities dbListar = new BiblioteccAccenturEEntities();
 }
-<div class="text-right">
-    @Html.ActionLink("Agregar", "Agregar")
-</div>
+
+
 
 @using (Html.BeginForm())
 {
-    <table class="table">
+    <table class="table ">
         <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Autor</th>
-                <th>Genero</th>
-                <th>Editorial</th>
+            <tr id="encabezado">
+                <th class="text-center">Titulo</th>
+                <th class="text-center">Autor</th>
+                <th class="text-center">Genero</th>
+                <th class="text-center">Editorial</th>
+                <th class="text-center">ISBN</th>
+ 
 
-                <th></th>
+            <th>
+                @Html.ActionLink(" ", "Agregar", null, new
+                                       {
+                                           @class = "glyphicon glyphicon-plus",
+                                           style = "font-size:1.5em"
+                                       })
+            </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr id="encabezado">
                 <td>
                     <input name="FiltroTitulo" type="text" class="form-control" />
                 </td>
@@ -59,23 +66,58 @@
                         }
                     </select>
                 </td>
-                <td class="text-right">
+
+                <td class="text-center">
+                    <input style="width:140px" name="FiltroISBN" type="text" class="form-control" />
+                    
+                </td>
+                <div></div>
+                <td class="text-center">
                     <button class="glyphicon glyphicon-search btn btn-primary"></button>
                 </td>
             </tr>
             @foreach (Libro lib in this.Model)
             {
                 <tr>
-                    <td>@lib.Titulo</td>
-                    <td>
+                    <td class="text-center">@lib.Titulo</td>
+                    <td class="text-center">
                         @foreach (Autor autor in lib.Autor)
                         {
-                            <div>@autor.NombreYApellido</div>
+                            <div class="text-center">@autor.NombreYApellido</div>
                         }
                     </td>
+
+                    <th class="text-center">
+                        @foreach (Genero generos in dbListar.Genero.ToList())
+                        {
+                            if (generos.Id_Genero == lib.Id_Genero)
+                            {
+                        <div class="text-center"> @generos.NombreGenero </div>
+                            }
+                        }
+                    </th>
+
+                    <th class="text-center">
+                        @foreach (Editorial editoriales in dbListar.Editorial.ToList())
+                        {
+                            if (editoriales.Id_Editorial == lib.Id_Editorial)
+                            {
+                               <div class="text-center"> @editoriales.NombreEditorial </div>
+                            }
+                        }
+                    </th>
+                    <th class="text-center"><div class="text-center">@lib.ISBN</div></th>
                     <td class="text-right">
-                        @Html.ActionLink("Editar", "Editar", new { Id = lib.Id_Libro })
-                        @Html.ActionLink("Eliminar", "Eliminar", new { Id = lib.Id_Libro })
+                        @Html.ActionLink(" ", "EditarLibro", new { Id = lib.Id_Libro }, new
+                            {
+                                @class = "glyphicon glyphicon-pencil",
+                                style = "font-size:1.5em"
+                            })
+                        @Html.ActionLink(" ", "EliminarLibro", new { Id = lib.Id_Libro }, new
+                            {
+                                @class = "glyphicon glyphicon-trash",
+                                style = "font-size:1.5em"
+                            })
                     </td>
                 </tr>
             }

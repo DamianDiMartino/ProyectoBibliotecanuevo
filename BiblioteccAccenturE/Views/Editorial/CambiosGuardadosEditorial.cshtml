@@ -1,0 +1,34 @@
+﻿@using BiblioteccAccenturE.Models
+
+@model Editorial
+@{
+    ViewBag.Title = "CambiosGuardadosLibro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    BiblioteccAccenturEEntities dbEditar = new BiblioteccAccenturEEntities();
+    List<Autor> autores = dbEditar.Autor.OrderBy(aut => aut.NombreYApellido).ToList();
+    List<Genero> generos = dbEditar.Genero.OrderBy(gen => gen.NombreGenero).ToList();
+    List<Libro> libros = dbEditar.Libro.OrderBy(lib => lib.Titulo).ToList();
+    List<Editorial> editoriales = dbEditar.Editorial.OrderBy(edit => edit.NombreEditorial).ToList();
+    Editorial editorial = this.ViewBag.Editorial;
+
+}
+
+<div class="contenedorError">
+    <div class="texto">
+        <h1>PROCESO FINALIZADO</h1>
+
+        <p>LOS CAMBIOS SE HAN GUARDADO CORRECTAMENTE</p>
+
+        @Html.ActionLink("Ir a Editoriales", "ListadoEditoriales", "Editorial", null, new { @class = "btn btn-success" })
+    </div>
+    <div class="imagenguarda">
+
+    </div>
+
+
+
+</div>

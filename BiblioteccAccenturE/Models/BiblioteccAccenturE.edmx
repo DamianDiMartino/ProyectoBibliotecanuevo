@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BiblioteccAccenturEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BiblioteccAccenturEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Autor">
           <Key>
             <PropertyRef Name="Id_Autor" />
@@ -45,7 +45,9 @@
           <Property Name="Id_Editorial" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_AUTOR">
-          <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EscritoPor" Type="Self.EscritoPor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Autor">
@@ -57,7 +59,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LIBRO">
-          <End Role="Libro" Type="Self.Libro" Multiplicity="1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EscritoPor" Type="Self.EscritoPor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Libro">
@@ -119,18 +123,35 @@
             <End Role="Libro" EntitySet="Libro" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BiblioteccAccenturEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BiblioteccAccenturEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autor" EntityType="BiblioteccAccenturEModel.Autor" />
+          <EntitySet Name="Editorial" EntityType="BiblioteccAccenturEModel.Editorial" />
+          <EntitySet Name="Genero" EntityType="BiblioteccAccenturEModel.Genero" />
+          <EntitySet Name="Libro" EntityType="BiblioteccAccenturEModel.Libro" />
+          <AssociationSet Name="FK_LIBRO_EDITORIAL" Association="BiblioteccAccenturEModel.FK_LIBRO_EDITORIAL">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIBRO_GENERO" Association="BiblioteccAccenturEModel.FK_LIBRO_GENERO">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="EscritoPor" Association="BiblioteccAccenturEModel.EscritoPor">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Autor">
           <Key>
             <PropertyRef Name="Id_Autor" />
           </Key>
           <Property Name="Id_Autor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreYApellido" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Libro" Relationship="Self.EscritoPor" FromRole="Autor" ToRole="Libro" />
+          <NavigationProperty Name="Libro" Relationship="BiblioteccAccenturEModel.EscritoPor" FromRole="Autor" ToRole="Libro" />
         </EntityType>
         <EntityType Name="Editorial">
           <Key>
@@ -138,7 +159,7 @@
           </Key>
           <Property Name="Id_Editorial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreEditorial" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Libro" Relationship="Self.FK_LIBRO_EDITORIAL" FromRole="Editorial" ToRole="Libro" />
+          <NavigationProperty Name="Libro" Relationship="BiblioteccAccenturEModel.FK_LIBRO_EDITORIAL" FromRole="Editorial" ToRole="Libro" />
         </EntityType>
         <EntityType Name="Genero">
           <Key>
@@ -146,26 +167,26 @@
           </Key>
           <Property Name="Id_Genero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreGenero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Libro" Relationship="Self.FK_LIBRO_GENERO" FromRole="Genero" ToRole="Libro" />
+          <NavigationProperty Name="Libro" Relationship="BiblioteccAccenturEModel.FK_LIBRO_GENERO" FromRole="Genero" ToRole="Libro" />
         </EntityType>
         <EntityType Name="Libro">
           <Key>
             <PropertyRef Name="Id_Libro" />
           </Key>
           <Property Name="Id_Libro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ISBN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Id_Genero" Type="Int32" Nullable="false" />
           <Property Name="Id_Editorial" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Editorial" Relationship="Self.FK_LIBRO_EDITORIAL" FromRole="Libro" ToRole="Editorial" />
-          <NavigationProperty Name="Genero" Relationship="Self.FK_LIBRO_GENERO" FromRole="Libro" ToRole="Genero" />
-          <NavigationProperty Name="Autor" Relationship="Self.EscritoPor" FromRole="Libro" ToRole="Autor" />
+          <NavigationProperty Name="Editorial" Relationship="BiblioteccAccenturEModel.FK_LIBRO_EDITORIAL" FromRole="Libro" ToRole="Editorial" />
+          <NavigationProperty Name="Genero" Relationship="BiblioteccAccenturEModel.FK_LIBRO_GENERO" FromRole="Libro" ToRole="Genero" />
+          <NavigationProperty Name="Autor" Relationship="BiblioteccAccenturEModel.EscritoPor" FromRole="Libro" ToRole="Autor" />
         </EntityType>
         <Association Name="FK_LIBRO_EDITORIAL">
-          <End Role="Editorial" Type="Self.Editorial" Multiplicity="1">
+          <End Type="BiblioteccAccenturEModel.Editorial" Role="Editorial" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <End Type="BiblioteccAccenturEModel.Libro" Role="Libro" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Editorial">
               <PropertyRef Name="Id_Editorial" />
@@ -176,10 +197,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LIBRO_GENERO">
-          <End Role="Genero" Type="Self.Genero" Multiplicity="1">
+          <End Type="BiblioteccAccenturEModel.Genero" Role="Genero" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <End Type="BiblioteccAccenturEModel.Libro" Role="Libro" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genero">
               <PropertyRef Name="Id_Genero" />
@@ -190,27 +211,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="EscritoPor">
-          <End Role="Autor" Type="Self.Autor" Multiplicity="*" />
-          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <End Type="BiblioteccAccenturEModel.Autor" Role="Autor" Multiplicity="*" />
+          <End Type="BiblioteccAccenturEModel.Libro" Role="Libro" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BiblioteccAccenturEEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Autor" EntityType="Self.Autor" />
-          <EntitySet Name="Editorial" EntityType="Self.Editorial" />
-          <EntitySet Name="Genero" EntityType="Self.Genero" />
-          <EntitySet Name="Libro" EntityType="Self.Libro" />
-          <AssociationSet Name="FK_LIBRO_EDITORIAL" Association="Self.FK_LIBRO_EDITORIAL">
-            <End Role="Editorial" EntitySet="Editorial" />
-            <End Role="Libro" EntitySet="Libro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LIBRO_GENERO" Association="Self.FK_LIBRO_GENERO">
-            <End Role="Genero" EntitySet="Genero" />
-            <End Role="Libro" EntitySet="Libro" />
-          </AssociationSet>
-          <AssociationSet Name="EscritoPor" Association="Self.EscritoPor">
-            <End Role="Autor" EntitySet="Autor" />
-            <End Role="Libro" EntitySet="Libro" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -220,44 +223,44 @@
           <EntitySetMapping Name="Autor">
             <EntityTypeMapping TypeName="BiblioteccAccenturEModel.Autor">
               <MappingFragment StoreEntitySet="Autor">
-                <ScalarProperty Name="Id_Autor" ColumnName="Id_Autor" />
                 <ScalarProperty Name="NombreYApellido" ColumnName="NombreYApellido" />
+                <ScalarProperty Name="Id_Autor" ColumnName="Id_Autor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Editorial">
             <EntityTypeMapping TypeName="BiblioteccAccenturEModel.Editorial">
               <MappingFragment StoreEntitySet="Editorial">
-                <ScalarProperty Name="Id_Editorial" ColumnName="Id_Editorial" />
                 <ScalarProperty Name="NombreEditorial" ColumnName="NombreEditorial" />
+                <ScalarProperty Name="Id_Editorial" ColumnName="Id_Editorial" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Genero">
             <EntityTypeMapping TypeName="BiblioteccAccenturEModel.Genero">
               <MappingFragment StoreEntitySet="Genero">
-                <ScalarProperty Name="Id_Genero" ColumnName="Id_Genero" />
                 <ScalarProperty Name="NombreGenero" ColumnName="NombreGenero" />
+                <ScalarProperty Name="Id_Genero" ColumnName="Id_Genero" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Libro">
             <EntityTypeMapping TypeName="BiblioteccAccenturEModel.Libro">
               <MappingFragment StoreEntitySet="Libro">
-                <ScalarProperty Name="Id_Libro" ColumnName="Id_Libro" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-                <ScalarProperty Name="Id_Genero" ColumnName="Id_Genero" />
                 <ScalarProperty Name="Id_Editorial" ColumnName="Id_Editorial" />
+                <ScalarProperty Name="Id_Genero" ColumnName="Id_Genero" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id_Libro" ColumnName="Id_Libro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="EscritoPor" TypeName="BiblioteccAccenturEModel.EscritoPor" StoreEntitySet="EscritoPor">
-            <EndProperty Name="Autor">
-              <ScalarProperty Name="Id_Autor" ColumnName="Id_Autor" />
-            </EndProperty>
             <EndProperty Name="Libro">
               <ScalarProperty Name="Id_Libro" ColumnName="Id_Libro" />
+            </EndProperty>
+            <EndProperty Name="Autor">
+              <ScalarProperty Name="Id_Autor" ColumnName="Id_Autor" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

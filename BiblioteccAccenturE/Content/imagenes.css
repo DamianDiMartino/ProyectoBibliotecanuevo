@@ -1,0 +1,90 @@
+﻿div {
+  padding:10px;  
+
+}
+
+.imagen {
+    height: 600px;
+    background-image: url(libros1.jpg);
+    background-size: 700px 400px;
+    background-repeat: no-repeat;
+background-position:center;
+
+}
+
+.imagenguarda {
+    height: 600px;
+    background-image: url(guardalibro.jpg);
+    background-size: 700px 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.texto{
+    position:center;
+    text-align:center;
+    font-size:x-large;
+}
+
+#volver{
+    text-decoration:none;
+    
+}
+
+.grande{
+    display:flex;
+    height:500px;
+    width:500px;
+}
+
+.medianoarriba {
+
+    height: 200px;
+    width: 500px;
+}
+
+.medianoabajo {
+
+    height: 200px;
+    width: 500px;
+}
+
+.izquierdaarriba {
+    height: 200px;
+    width: 250px;
+    background-image: url(libros1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 600px 300px;
+}
+
+.derechaarriba {
+    height: 200px;
+    width: 250px;
+    background-image: url(autores.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 500px 300px;
+}
+
+.izquierdabajo {
+    height: 200px;
+    width: 250px;
+    background-image: url(editorial.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 700px 400px;
+}
+
+.derechaabajo {
+    height: 200px;
+    width: 250px;
+    background-image: url(generos.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 600px 300px;
+}
+
+.bajo{
+    height:40px;
+}

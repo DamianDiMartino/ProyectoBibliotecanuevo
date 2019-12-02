@@ -1,0 +1,33 @@
+﻿@using BiblioteccAccenturE.Models
+
+@model Libro
+@{
+    ViewBag.Title = "ErrorEliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    BiblioteccAccenturEEntities dbEditar = new BiblioteccAccenturEEntities();
+    List<Autor> autores = dbEditar.Autor.OrderBy(aut => aut.NombreYApellido).ToList();
+    List<Genero> generos = dbEditar.Genero.OrderBy(gen => gen.NombreGenero).ToList();
+    List<Libro> libros = dbEditar.Libro.OrderBy(lib => lib.Titulo).ToList();
+    List<Editorial> editoriales = dbEditar.Editorial.OrderBy(edit => edit.NombreEditorial).ToList();
+    Editorial editorial = this.ViewBag.Editorial;
+
+}
+
+    <div class="contenedorError">
+        <div class="texto">
+            <h1>Error De Gestion</h1>
+            @Html.ActionLink("ir a Editoriales", "ListadoEditoriales", "Editorial", null, new { @class = "btn btn-primary" })
+            <p>NO SE PUEDE ELIMINAR LA EDITORIAL SELECCIONADA</p>
+            <p>HAY LIBROS EN LA BASE SE DATOS PERTENECIENTES A LA MISMA </p>
+        </div>
+        <div class="imagen">
+
+        </div>
+
+
+
+    </div>

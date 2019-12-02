@@ -3,26 +3,70 @@
     ViewBag.Title = "EditarEditorial";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Editar</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-</head>
-<body>
+<script>
+
+    
+
+    function validacion() {
+
+        console.log(valida);
+        var valida = document.forms["editaEditorial"]["NombreEditorial"].value;
+        if (valida == "") {
+            alert("llego");
+            $("#msgError").modal("show");
+            return false;
+            
+            
+        }
+
+    }
+</script>
+
     <h1 class="text-center">@this.ViewBag.TituloPagina</h1>
-    <main class="container">
-        <form method="post">
-            <label for="txtTitulo">Editorial </label>
-            <input type="text" id="txtEditorial"
-                   name="NombreEditorial" value="@this.Model.NombreEditorial"
-                   placeholder="Ingrese Nombre de Editorial.." />
 
+    <form method="post" name="editaEditorial" onsubmit="return validacion()">
+
+        @using (Html.BeginForm())
+        {
+            <div class="tipeadores">
+                @Html.HiddenFor(edit => edit.Id_Editorial)
+                @Html.LabelFor(edit => edit.NombreEditorial, "Editorial")
+
+                @Html.EditorFor(edit => edit.NombreEditorial,
+                          new
+                            {
+                               htmlAttributes = new
+                              {
+                                                                @class = "form-control",
+                                placeholder = "Ingrese Nombre Editorial..."
+                              }
+                          })
+            </div>
+                <div class="btnposition">
+                    <div id="espacios"></div>
+                    <button class="btn btn-primary form-control" style="margin-top:1em" id="enviar">
+                        Guardar Cambios
+                    </button>
+                    <div id="espacios"></div>
+                </div>
+                }
         </form>
-    </main>
-</body>
-</html>
+
+    <div id="msgError" class="modal fade" role="dialog">
+        <div class="modal-sm">
+            <div class="modal-content" style="color:red">
+                <div class="modal-header" style="color:red">
+                    <h4 style="text-align:center"> Error </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="text-align:center"> Complete el Nombre de la Editorial</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> OK </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+

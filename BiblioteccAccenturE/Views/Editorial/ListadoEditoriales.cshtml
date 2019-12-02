@@ -3,35 +3,41 @@
     ViewBag.Title = "ListadoEditoriales";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Listado Editoriales</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-</head>
-<body>
-    <h1 class="text-center">LISTADO DE EDITORIALES</h1>
-    <main class="container">
-        <div class="text-right">
+<script>
+    var eliminar = document.querySelector(".eliminar");
+    eliminar.addEventListener("click", e => {
+        e.preventDefault();
+        alert("paro");
+    })
 
-            <a href="/Editorial/AgregarEditorial/" class="glyphicon glyphicon-plus" style="font-size:1.5em"></a>
-        </div>
-        <table class="table table-hover table-striped">
+</script>
+<h1 class="text-center">LISTADO DE EDITORIALES</h1>
+<div>
+    
+    <div id="separador">
+
+    </div>
+    <div>
+
+        <table class="table">
             <thead>
-                <tr>
-                    <th>Nombre Editorial</th>
-                    <th></th>
+                <tr id="encabezado">
+                    <th style="font-size:xx-large">EDITORIAL</th>
+                    <th><div class="text-right">
+    @Html.ActionLink(" ", "AgregarEditorial", null, new
+                            {
+                                @class = "glyphicon glyphicon-plus",
+                                style = "font-size:1.5em"
+                            })
+</div></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var edit in this.Model)
                 {
                     <tr>
-                        <td>@edit.NombreEditorial</td>
+                        <td>@Html.ActionLink(edit.NombreEditorial, "LibrosPorEditorial", "Libro", new { Id = edit.Id_Editorial }, new { id = "eliminar" })</td>
                         <td class="text-right">
                             @Html.ActionLink(" ", "EditarEditorial", new { Id = edit.Id_Editorial },
                             new
@@ -51,6 +57,8 @@
                 }
             </tbody>
         </table>
-    </main>
-</body>
-</html>
+    </div>
+    <div id="separador">
+
+    </div>
+</div>

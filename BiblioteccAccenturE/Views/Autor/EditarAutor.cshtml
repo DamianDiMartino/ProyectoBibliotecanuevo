@@ -3,29 +3,103 @@
     ViewBag.Title = "EditarAutor";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Editar</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-</head>
+<script>
+
+    btn = document.getElementById("enviar");
+    
+    function validacion() {
+         
+        var valida = document.forms["editaAutor"]["NombreYApellido"].value;
+        if (valida == "") {
+
+            $("#msgError").modal("show");
+            return false;
+        }
+        else {
+
+            $("#myModal2").modal("hide.bs.modal", function () {
+                alert("LLEGO ACA");
+                console.log("CONSOLA");
+                return true;
+            });
+            
+
+        }
+    }
+</script>
 <body>
-    <header class="jumbotron text-center">
-        Editar Autor
-    </header>
 
-    <main class="container">
-        <form method="post">
-            <label for="txtTitulo">Autor </label>
-            <input type="text" id="txtAutor"
-                   name="NombreYApellido" value="@this.Model.NombreYApellido"
-                   placeholder="Ingrese Nombre y Apellido.." />
+    <h1 class="text-center">@this.ViewBag.TituloPagina</h1>
 
+
+        <form method="post" name="editaAutor" onsubmit="return validacion()">
+
+            @using (Html.BeginForm())
+            {
+                <div class="tipeadores">
+                    @Html.HiddenFor(aut => aut.Id_Autor)
+                    @Html.LabelFor(aut => aut.NombreYApellido, "Nombre Y Apellido")
+                    @Html.EditorFor(aut => aut.NombreYApellido,
+                          new
+                            {
+                               htmlAttributes = new
+                              {
+                                                                @class = "form-control",
+                                placeholder = "Ingrese Nombre Y Apellido del Autor..."
+                              }
+                          });
+                </div>
+                <div class="btnposition">
+                    <div id="espacios"></div>
+                    <button class="btn btn-primary form-control" style="margin-top:1em" id="enviar">
+                        Guardar Cambios
+                    </button>
+                    <div id="espacios"></div>
+                </div>
+
+            }
         </form>
-    </main>
+
+        <div id="msgError" class="modal fade" role="dialog">
+            <div class="modal-sm">
+                <div class="modal-content" style="color:red">
+                    <div class="modal-header" style="color:red">
+                        <h4 style="text-align:center"> Error </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p style="text-align:center"> Complete el Nombre del Autor </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> OK </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="myModal2" class="modal fade" role="dialog">
+            <form action=" "></form>
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>MODAL 2</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
 </body>
-</html>
+

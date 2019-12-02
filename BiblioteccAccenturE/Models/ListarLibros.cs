@@ -12,5 +12,7 @@ namespace BiblioteccAccenturE.Models
         public int? FiltroAutor { get; set; }
         public int? FiltroGenero { get; set; }
         public int? FiltroEditorial { get; set; }
+        public string FiltroISBN { get; set; }
+
     }
 }

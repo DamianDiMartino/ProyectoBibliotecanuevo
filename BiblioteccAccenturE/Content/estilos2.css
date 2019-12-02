@@ -1,7 +1,12 @@
-*{
+
+* {
     margin: 0;
     padding: 0;
 }
+
+
+/*          HEADER          */
+
 header{
     padding-left: 15px;
     padding-right: 50px;
@@ -19,63 +24,221 @@ header{
     
 }
 
-.home{
-    margin-right: 50px;
+.header-abierto {
+    left: 200px;
+    width: 90%;
 }
 
-
-
-.header-abierto{
-   left:200px;
-  width: 81%;
-   
-}
-
-.contenedor{
+.contenedor {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
 }
 
-.buscador{
+
+.home {                                         /* LINK HOME HEADER */
+    text-decoration: none;
+    margin-right: 50px;
+}
+
+    .home:hover {
+        text-decoration: none;
+    }
+
+
+/* HEADER */
+
+/* BARRA LATERAL */
+
+
+nav {
+    position: fixed;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    background: linear-gradient(grey, rgb(66, 85, 79),#43434e);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease;
+    height: 100%;
+}
+
+
+
+.nav1 { /* SECCION SUPERIOR LINK HOME */
+    margin-top: 25px;
+    align-self: center;
+    justify-content: center;
+    display: flex;
+    font-size: 20px;
+    color: aqua;
+    text-decoration: none;
+    transition: all 0.4s linear;
+    border-radius: 10px;
+    border-bottom: 1px solid rgb(91, 139, 125);
+}
+
+.linkhome {                                                 /* SECCION SUPERIOR LINK HOME */
+    font-size: 20px;
+    color: aqua;
+    text-decoration: none;
+    transition: all 0.4s linear;
+    border-radius: 10px;
+    border-bottom: 1px solid rgb(91, 139, 125);
+}
+
+    .nav1:hover {                                                /* SECCION SUPERIOR LINK HOME */
+        padding: 0.5rem;
+        background: rgb(83, 104, 98);
+        text-decoration: none;
+    }
+
+.nav2 { /* SECCION INFERIOR LINKS AREAS */
+    font-size: 20px;
+    display: table;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: all 0.4s linear;
+    color: rgb(69, 201, 216);
+    text-decoration: none;
+    transition: all 0.4s linear;
+    border-radius: 10px;
+    border-bottom: 1px solid aqua;
+}
+
+    .nav2 > a {                                             /* SECCION INFERIOR LINKS AREAS */
+        color: rgb(69, 201, 216);
+        text-decoration: none;
+        transition: all 0.4s linear;
+        border-radius: 10px;
+      
+    }
+
+
+        .nav2   :hover {                                     /* SECCION INFERIOR LINKS AREAS */
+            text-decoration: none;
+            padding: 0.5rem;
+            background: rgb(83, 104, 98);
+        }
+#sub2{
+    align-content:center;
+}
+.link {
+    font-size: 25px;
+    display: block;
+    padding: 0.5rem;
+    color: rgb(69, 201, 216);
+    text-decoration: none;
+    transition: all 0.4s linear;
+    border-radius: 10px;
+    border-bottom: 1px solid rgb(91, 139, 125);
+}
+
+
+
+
+/* BARRA LATERAL */
+
+
+
+
+/*      BUSCADOR         */
+
+
+.buscador {
     justify-content: space-between;
     display: flex;
     width: 200px;
-    
 }
 
-#busca{
+#busca {
+    margin-top:15px;
     border-radius: 5px;
     margin-left: 5px;
 }
 
-#bus{
-    height: 24px;
+
+
+#bus {
+    height: 30px;
     border-radius: 5px;
+    margin-top:15px;
+    width:400px;
 }
+
+
+
+.contbus{
+    width:300px;
+    height:40px;
+    position:fixed;
+    top:80px;
+    background: rgba(0,0,0,0.3);
+    display:none;
+
+}
+
+.conttab {
+    width: 80%;
+    max-height: 200px;
+    height: auto;
+    background: rgba(0,0,0,0.3);
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+
+    .conttab > table {
+        width: 100%;
+    }
+
+tbody > tr > td > p{
+    display: block;
+    padding:5px;
+    color:aqua;
+    text-decoration:none;
+
+}
+
+    tbody > tr > td > p:hover{
+        background: rgba(0,0,0,0.3);
+    }
+
+
+
+
+/*      BUSCADOR         */
+
+
+
+
+
 
 button{
     border-radius: 5px;
     height: 30px;
-    left: 10pz;
+    left: 10px;
     }
     button:hover{
         background: rgba(190, 190, 190, 0.637);
     }
 
-main{
-    display: flex;
-    padding-top: 120px;
-}
-
-body{
-
+body {
     background-image: url(librosnaranja2.jpg);
     background-attachment: fixed;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
 }
+
+main{
+    display: flex;
+    padding-top: 50px;
+}
+
+
 
 div{
     width: 95%;
@@ -88,49 +251,9 @@ div{
 
 }
 
-nav {
-    position: fixed;
-    top: 0;
-    left: -200px;
-    width: 200px;
-    background:linear-gradient(grey, rgb(66, 85, 79),#43434e);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.5s ease;
-    height: 100%;
-}
-
-.link{
-    display: block;
-    padding: 0.5rem;
-    color: rgb(69, 201, 216);
-    text-decoration: none;
-    transition: all 0.4s linear;
-    border-radius: 10px;
-    border-bottom: 1px solid rgb(91, 139, 125) ;
-}
-
-.nav1{
-    margin-top: 25px;
-    align-self: center;
-    justify-content: center;
-    display: flex;
-    
-}
 
 
 
-.link:hover{
-    background: rgb(83, 104, 98);
-}
-.linkhome{
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
-   font-style: inherit;
-   text-decoration: none;
-   color: rgb(69, 201, 216);
-}
 
 .home{
     text-decoration: none;
@@ -138,12 +261,28 @@ nav {
 }
 
 footer {
-    padding: 3rem;
+
     background: rgb(255, 206, 132);
     
 }
 
 .abierto{
     left: 0;
+}
+
+td {
+    vertical-align: middle;
+    align-items: center;
+    padding-top: 20px;
+}
+
+tr {
+    vertical-align: middle;
+    text-align: center;
+}
+
+th {
+    vertical-align: middle;
+    text-align: center;
 }
 

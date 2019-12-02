@@ -4,27 +4,72 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<script>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Editar</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-</head>
+    btn = document.getElementById("enviar");
+
+    function validacion() {
+
+        var valida = document.forms["editaGenero"]["NombreGenero"].value;
+        if (valida == "") {
+
+            $("#msgError").modal("show");
+            return false;
+        }
+
+    }
+</script>
 <body>
     <h1 class="text-center">@this.ViewBag.TituloPagina</h1>
-    <main class="container">
-        <form method="post">
-            <label for="txtTitulo">Genero </label>
-            <input type="text" id="txtGenero"
-                   name="NombreGenero" value="@this.Model.NombreGenero"
-                   placeholder="Ingrese El Genero" />
 
-        </form>
-    </main>
+    <form method="post" name="editaGenero" onsubmit="return validacion()">
+
+        @using (Html.BeginForm())
+        {
+
+            <div class="tipeadores">
+                @Html.HiddenFor(gen => gen.Id_Genero)
+                @Html.LabelFor(gen => gen.NombreGenero, "Genero")
+                @Html.EditorFor(gen => gen.NombreGenero,
+                          new
+                            {
+                               htmlAttributes = new
+                              {
+                                                                @class = "form-control",
+                                placeholder = "Ingrese Genero..."
+                              }
+                          })
+            </div>
+
+            <div class="btnposition">
+                <div id="espacios"></div>
+                <button class="btn btn-primary form-control" style="margin-top:1em" id="enviar">
+                    Guardar Cambios
+                </button>
+                <div id="espacios"></div>
+            </div>
+
+        }
+    </form>
+    <div style="height:350px"></div>
+    <div id="msgError" class="modal fade" role="dialog">
+        <div class="modal-sm">
+            <div class="modal-content" style="color:red">
+                <div class="modal-header" style="color:red">
+                    <h4 style="text-align:center"> Error </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="text-align:center"> Complete el Genero </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"> OK </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+   
 </body>
-</html>
+
 
